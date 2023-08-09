@@ -46,7 +46,10 @@ open(brun,"r") do frun
         runname = "r_$(rstr)km-mld_$(mldstr)m"
         mkpath(datadir("IslandClimate","OUT_2D",runname))
         mkpath(datadir("IslandClimate","OUT_3D",runname))
+        mkpath(datadir("IslandClimate","OUT_MOMENTS",runname))
+        mkpath(datadir("IslandClimate","OUT_MOVIES",runname))
         mkpath(datadir("IslandClimate","OUT_STAT",runname))
+        mkpath(datadir("IslandClimate","RESTART",runname))
 
     end
 end
