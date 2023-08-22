@@ -8,6 +8,18 @@ mldvec = [0.01,0.02,0.05,0.1,0.2,0.5,1,2,5,10]
 mrun = projectdir("run","modifysam","runtemplates","modelrun.sh")
 brun = projectdir("run","modifysam","runtemplates","Build.csh")
 
+email = ""
+
+open(nrun,"w") do wrun
+    sn = replace(s ,"[email]"   => email)
+    sn = replace(sn,"[prjname]" => projectdir())
+    sn = replace(sn,"[expname]" => "IslandClimate")
+    sn = replace(sn,"[runname]" => "control")
+    sn = replace(sn,"[sndname]" => "islandclimate")
+    sn = replace(sn,"[lsfname]" => "control")
+    write(wrun,sn)
+end
+
 open(mrun,"r") do frun
     s = read(frun,String)
     for r in rvec, mld in mldvec
@@ -15,14 +27,25 @@ open(mrun,"r") do frun
         rstr   = @sprintf("%03d",r)
         mldstr = @sprintf("%05.2f",mld)
         runname = "r_$(rstr)km-mld_$(mldstr)m"
+        srun = projectdir("run","IslandClimate","spinup-$(runname).sh")
         nrun = projectdir("run","IslandClimate","$(runname).sh")
 
         open(nrun,"w") do wrun
-            sn = replace(s ,"[email]"   => )
+            sn = replace(s ,"[email]"   => email)
             sn = replace(sn,"[prjname]" => projectdir())
             sn = replace(sn,"[expname]" => "IslandClimate")
             sn = replace(sn,"[runname]" => runname)
-            sn = replace(sn,"[sndname]" => "control")
+            sn = replace(sn,"[sndname]" => "islandclimate")
+            sn = replace(sn,"[lsfname]" => "control")
+            write(wrun,sn)
+        end
+
+        open(srun,"w") do wrun
+            sn = replace(s ,"[email]"   => email)
+            sn = replace(sn,"[prjname]" => projectdir())
+            sn = replace(sn,"[expname]" => "IslandClimate")
+            sn = replace(sn,"[runname]" => "spinup-$(runname)")
+            sn = replace(sn,"[sndname]" => "islandclimate")
             sn = replace(sn,"[lsfname]" => "control")
             write(wrun,sn)
         end

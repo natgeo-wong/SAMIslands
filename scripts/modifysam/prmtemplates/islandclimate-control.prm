@@ -1,9 +1,6 @@
 &PARAMETERS
 
-caseid = 'r_[r]km-mld_[mld]m/TropICS-IslandClimate-r_[r]km-mld_[mld]m',
-
-case_restart = 'RCE',
-caseid_restart = 'r_[r]km-mld_[mld]m/TropICS-IslandClimate-r_[r]km-mld_[mld]m-spinup',
+caseid = 'TropICS-IslandClimate-control',
 
 dx = 1000.,
 dy = 1000.,
@@ -24,7 +21,7 @@ doprecip         = .true.,
 dolongwave       = .true.,
 doshortwave      = .true.,
 dosurface        = .true.,
-dodynamicocean   = .true.,
+dodynamicocean   = .false.,
 dolargescale     = .false.,
 doradforcing     = .false.,
 doradhomo        = .false.,
@@ -44,7 +41,7 @@ day0       = 0.,
 tabs_s     = 300.,
 Szero      = 0,
 
-depth_slab_ocean = [mld],
+depth_slab_ocean = 1.0,
 
 nrad = 12,
 
@@ -62,16 +59,16 @@ doisccp = .false.,
 domodis = .false.,
 domisr  = .false.,
 
-nstop    = 864000,
+nstop    = 1296000,
 nprint   = 8640,
-nstat    = 360,     ! Calculate statistics every hour!
+nstat    = 180,     ! Calculate statistics every hour!
 nstatfrq = 60,     ! Collect 60 samples per statistical calculation (every 1 minute)
 
 doSAMconditionals     = .false.,
 dosatupdnconditionals = .false.,
 
-nsave2D      = 8640,
-nsave2Dstart = 0,
+nsave2D      = 180,
+nsave2Dstart = 9999999,
 nsave2Dend   = 999999999,
 save2Davg    = .true.,
 
@@ -84,9 +81,6 @@ rad3Dout     = .true.,
 
 &KUANG_PARAMS
 
-dosstislands      = .true.,
-sstislands_radius = [r].e3,
-sstislands_nrow   = 1.
-sstislands_ncol   = 1.
+dosstislands      = .false.,
 
 /
