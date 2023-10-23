@@ -31,7 +31,7 @@ for r in rvec, mld in mldvec
     mv(tprm,nprm,force=true)
     @info "Creating new spinup IslandRCE prm file for r = $(rstr), MLD = $(mldstr)"
 
-    oprm = projectdir("run","modifysam","prmtemplates","islandrce.prm")
+    oprm = projectdir("run","modifysam","prmtemplates","islandrce-stats.prm")
     nprm = projectdir("exp","prm","IslandRCE","$(fID).prm")
     open(tprm,"w") do fprm
         open(oprm,"r") do rprm

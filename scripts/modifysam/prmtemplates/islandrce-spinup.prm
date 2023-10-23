@@ -1,9 +1,9 @@
 &PARAMETERS
 
-caseid = 'TropICS-IslandRCE-r_[r]km-mld_[mld]m-spinup',
+caseid = 'TropICS-IslandRCE-member[xx]-r_[r]km-mld_[mld]m-spinup',
 
 case_restart = 'RCE',
-caseid_restart = 'TropICS-IslandRCE-control',
+caseid_restart = 'TropICS-IslandRCE-member[xx]',
 
 dx = 2000.,
 dy = 2000.,
