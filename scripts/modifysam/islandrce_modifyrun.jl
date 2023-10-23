@@ -2,7 +2,7 @@ using DrWatson
 @quickactivate "TropICS"
 using Printf
 
-rvec   = [10,15,20,30,50,70,100]
+rvec   = [5,10,15,20,30,50]
 mldvec = [0.01,0.02,0.05,0.1,0.2,0.5,1,2,5,10]
 
 mrun = projectdir("run","modifysam","runtemplates","modelrun.sh")
@@ -13,9 +13,9 @@ email = ""
 open(nrun,"w") do wrun
     sn = replace(s ,"[email]"   => email)
     sn = replace(sn,"[prjname]" => projectdir())
-    sn = replace(sn,"[expname]" => "IslandClimate")
+    sn = replace(sn,"[expname]" => "IslandRCE")
     sn = replace(sn,"[runname]" => "control")
-    sn = replace(sn,"[sndname]" => "islandclimate")
+    sn = replace(sn,"[sndname]" => "islandrce")
     sn = replace(sn,"[lsfname]" => "control")
     write(wrun,sn)
 end
@@ -27,15 +27,15 @@ open(mrun,"r") do frun
         rstr   = @sprintf("%03d",r)
         mldstr = @sprintf("%05.2f",mld)
         runname = "r_$(rstr)km-mld_$(mldstr)m"
-        srun = projectdir("run","IslandClimate","spinup-$(runname).sh")
-        nrun = projectdir("run","IslandClimate","$(runname).sh")
+        srun = projectdir("run","IslandRCE","spinup-$(runname).sh")
+        nrun = projectdir("run","IslandRCE","$(runname).sh")
 
         open(nrun,"w") do wrun
             sn = replace(s ,"[email]"   => email)
             sn = replace(sn,"[prjname]" => projectdir())
-            sn = replace(sn,"[expname]" => "IslandClimate")
+            sn = replace(sn,"[expname]" => "IslandRCE")
             sn = replace(sn,"[runname]" => runname)
-            sn = replace(sn,"[sndname]" => "islandclimate")
+            sn = replace(sn,"[sndname]" => "islandrce")
             sn = replace(sn,"[lsfname]" => "control")
             write(wrun,sn)
         end
@@ -43,9 +43,9 @@ open(mrun,"r") do frun
         open(srun,"w") do wrun
             sn = replace(s ,"[email]"   => email)
             sn = replace(sn,"[prjname]" => projectdir())
-            sn = replace(sn,"[expname]" => "IslandClimate")
+            sn = replace(sn,"[expname]" => "IslandRCE")
             sn = replace(sn,"[runname]" => "spinup-$(runname)")
-            sn = replace(sn,"[sndname]" => "islandclimate")
+            sn = replace(sn,"[sndname]" => "islandrce")
             sn = replace(sn,"[lsfname]" => "control")
             write(wrun,sn)
         end
@@ -55,10 +55,10 @@ end
 
 open(brun,"r") do frun
     s = read(frun,String)
-    nrun = projectdir("run","IslandClimate","Build.csh")
+    nrun = projectdir("run","IslandRCE","Build.csh")
     open(nrun,"w") do wrun
         sn = replace(s ,"[datadir]" => datadir())
-        sn = replace(sn,"[expname]" => "IslandClimate")
+        sn = replace(sn,"[expname]" => "IslandRCE")
         write(wrun,sn)
     end
 
@@ -67,12 +67,12 @@ open(brun,"r") do frun
         rstr   = @sprintf("%03d",r)
         mldstr = @sprintf("%05.2f",mld)
         runname = "r_$(rstr)km-mld_$(mldstr)m"
-        mkpath(datadir("IslandClimate","OUT_2D",runname))
-        mkpath(datadir("IslandClimate","OUT_3D",runname))
-        mkpath(datadir("IslandClimate","OUT_MOMENTS",runname))
-        mkpath(datadir("IslandClimate","OUT_MOVIES",runname))
-        mkpath(datadir("IslandClimate","OUT_STAT",runname))
-        mkpath(datadir("IslandClimate","RESTART",runname))
+        mkpath(datadir("IslandRCE","OUT_2D",runname))
+        mkpath(datadir("IslandRCE","OUT_3D",runname))
+        mkpath(datadir("IslandRCE","OUT_MOMENTS",runname))
+        mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
+        mkpath(datadir("IslandRCE","OUT_STAT",runname))
+        mkpath(datadir("IslandRCE","RESTART",runname))
 
     end
 end

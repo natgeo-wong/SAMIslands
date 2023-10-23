@@ -1,12 +1,12 @@
 &PARAMETERS
 
-caseid = 'r_[r]km-mld_[mld]m/TropICS-IslandClimate-r_[r]km-mld_[mld]m-spinup',
+caseid = 'r_[r]km-mld_[mld]m/TropICS-IslandRCE-r_[r]km-mld_[mld]m',
 
 case_restart = 'RCE',
-caseid_restart = 'TropICS-IslandClimate-control',
+caseid_restart = 'TropICS-IslandRCE-r_[r]km-mld_[mld]m-spinup',
 
-dx = 1000.,
-dy = 1000.,
+dx = 2000.,
+dy = 2000.,
 dt = 10.,
 
 nrestart      = 0,
