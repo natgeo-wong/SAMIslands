@@ -10,44 +10,54 @@ brun = projectdir("run","modifysam","runtemplates","Build.csh")
 
 email = ""
 
-open(nrun,"w") do wrun
-    sn = replace(s ,"[email]"   => email)
-    sn = replace(sn,"[prjname]" => projectdir())
-    sn = replace(sn,"[expname]" => "IslandRCE")
-    sn = replace(sn,"[runname]" => "control")
-    sn = replace(sn,"[sndname]" => "islandrce")
-    sn = replace(sn,"[lsfname]" => "control")
-    write(wrun,sn)
-end
-
 open(mrun,"r") do frun
     s = read(frun,String)
-    for r in rvec, mld in mldvec
+    for imember in 1 : 10
 
-        rstr   = @sprintf("%03d",r)
-        mldstr = @sprintf("%05.2f",mld)
-        runname = "r_$(rstr)km-mld_$(mldstr)m"
-        srun = projectdir("run","IslandRCE","spinup-$(runname).sh")
-        nrun = projectdir("run","IslandRCE","$(runname).sh")
+        mbrstr = @sprintf("%02d",imember)
 
-        open(nrun,"w") do wrun
+        crun = projectdir("run","IslandRCE","output$mbrstr.sh")
+        open(crun,"w") do wrun
             sn = replace(s ,"[email]"   => email)
             sn = replace(sn,"[prjname]" => projectdir())
             sn = replace(sn,"[expname]" => "IslandRCE")
-            sn = replace(sn,"[runname]" => runname)
+            sn = replace(sn,"[runname]" => "control")
             sn = replace(sn,"[sndname]" => "islandrce")
             sn = replace(sn,"[lsfname]" => "control")
+            sn = replace(sn,"[prmname]" => "output$mbrstr.prm")
             write(wrun,sn)
         end
 
-        open(srun,"w") do wrun
-            sn = replace(s ,"[email]"   => email)
-            sn = replace(sn,"[prjname]" => projectdir())
-            sn = replace(sn,"[expname]" => "IslandRCE")
-            sn = replace(sn,"[runname]" => "spinup-$(runname)")
-            sn = replace(sn,"[sndname]" => "islandrce")
-            sn = replace(sn,"[lsfname]" => "control")
-            write(wrun,sn)
+        for r in rvec, mld in mldvec
+
+            rstr   = @sprintf("%03d",r)
+            mldstr = @sprintf("%05.2f",mld)
+            runname = "r_$(rstr)km-mld_$(mldstr)m"
+            srun = projectdir("run","IslandRCE","$(runname)-spinup$mbrstr.sh")
+            nrun = projectdir("run","IslandRCE","$(runname)-output$mbrstr.sh")
+
+            open(nrun,"w") do wrun
+                sn = replace(s ,"[email]"   => email)
+                sn = replace(sn,"[prjname]" => projectdir())
+                sn = replace(sn,"[expname]" => "IslandRCE")
+                sn = replace(sn,"[runname]" => runname)
+                sn = replace(sn,"[sndname]" => "islandrce")
+                sn = replace(sn,"[lsfname]" => "control")
+                sn = replace(sn,"[prmname]" => "output$mbrstr.prm")
+                write(wrun,sn)
+            end
+
+            open(srun,"w") do wrun
+                sn = replace(s ,"[email]"   => email)
+                sn = replace(sn,"[prjname]" => projectdir())
+                sn = replace(sn,"[expname]" => "IslandRCE")
+                sn = replace(sn,"[runname]" => runname)
+                sn = replace(sn,"[sndname]" => "islandrce")
+                sn = replace(sn,"[lsfname]" => "control")
+                sn = replace(sn,"[prmname]" => "spinup$mbrstr.prm")
+                write(wrun,sn)
+            end
+
         end
 
     end
@@ -62,17 +72,32 @@ open(brun,"r") do frun
         write(wrun,sn)
     end
 
-    for r in rvec, mld in mldvec
+    for imember in 1 : 10
 
-        rstr   = @sprintf("%03d",r)
-        mldstr = @sprintf("%05.2f",mld)
-        runname = "r_$(rstr)km-mld_$(mldstr)m"
+        mbrstr = @sprintf("%02d",imember)
+
+        runname = "RCE_TropICS-IslandRCE-member$mbrstr"
         mkpath(datadir("IslandRCE","OUT_2D",runname))
         mkpath(datadir("IslandRCE","OUT_3D",runname))
         mkpath(datadir("IslandRCE","OUT_MOMENTS",runname))
         mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
         mkpath(datadir("IslandRCE","OUT_STAT",runname))
         mkpath(datadir("IslandRCE","RESTART",runname))
+        
+        for r in rvec, mld in mldvec
+
+            rstr   = @sprintf("%03d",r)
+            mldstr = @sprintf("%05.2f",mld)
+
+            runname = "RCE_TropICS-IslandRCE-r_$(rstr)km-mld_$(mldstr)m-member$mbrstr"
+            mkpath(datadir("IslandRCE","OUT_2D",runname))
+            mkpath(datadir("IslandRCE","OUT_3D",runname))
+            mkpath(datadir("IslandRCE","OUT_MOMENTS",runname))
+            mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
+            mkpath(datadir("IslandRCE","OUT_STAT",runname))
+            mkpath(datadir("IslandRCE","RESTART",runname))
+
+        end
 
     end
 end

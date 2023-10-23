@@ -25,9 +25,10 @@ expname=[expname]
 runname=[runname]
 sndname=[sndname]
 lsfname=[lsfname]
+ensemblemember=member[xx]
 
 exproot=[prjname]/exp
-prmfile=$exproot/prm/$expname/${runname}.prm
+prmfile=$exproot/prm/$expname/${runname}/${prmname}.prm
 sndfile=$exproot/snd/$sndname
 lsffile=$exproot/lsf/$lsfname
 
