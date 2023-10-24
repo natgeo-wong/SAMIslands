@@ -83,6 +83,7 @@ open(brun,"r") do frun
         mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
         mkpath(datadir("IslandRCE","OUT_STAT",runname))
         mkpath(datadir("IslandRCE","RESTART",runname))
+        mkpath(projectdir("run","IslandRCE","RCE",runname))
         
         for r in rvec, mld in mldvec
 
@@ -96,6 +97,7 @@ open(brun,"r") do frun
             mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
             mkpath(datadir("IslandRCE","OUT_STAT",runname))
             mkpath(datadir("IslandRCE","RESTART",runname))
+            mkpath(projectdir("run","IslandRCE","RCE",runname))
 
         end
 
