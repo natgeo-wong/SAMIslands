@@ -16,7 +16,7 @@ open(mrun,"r") do frun
 
         mbrstr = @sprintf("%02d",imember)
 
-        crun = projectdir("run","IslandRCE","output$mbrstr.sh")
+        crun = projectdir("run","IslandRCE","control","output$mbrstr.sh")
         open(crun,"w") do wrun
             sn = replace(s ,"[email]"   => email)
             sn = replace(sn,"[prjname]" => projectdir())
@@ -33,8 +33,8 @@ open(mrun,"r") do frun
             rstr   = @sprintf("%03d",r)
             mldstr = @sprintf("%05.2f",mld)
             runname = "r_$(rstr)km-mld_$(mldstr)m"
-            srun = projectdir("run","IslandRCE","$(runname)-spinup$mbrstr.sh")
-            nrun = projectdir("run","IslandRCE","$(runname)-output$mbrstr.sh")
+            srun = projectdir("run","IslandRCE",runname,"spinup$mbrstr.sh")
+            nrun = projectdir("run","IslandRCE",runname,"output$mbrstr.sh")
 
             open(nrun,"w") do wrun
                 sn = replace(s ,"[email]"   => email)
@@ -65,11 +65,19 @@ end
 
 open(brun,"r") do frun
     s = read(frun,String)
-    nrun = projectdir("run","IslandRCE","Build.csh")
-    open(nrun,"w") do wrun
-        sn = replace(s ,"[datadir]" => datadir())
-        sn = replace(sn,"[expname]" => "IslandRCE")
-        write(wrun,sn)
+
+    for r in rvec, mld in mldvec
+
+        rstr   = @sprintf("%03d",r)
+        mldstr = @sprintf("%05.2f",mld)
+        nrun   = projectdir("run","IslandRCE","r_$(rstr)km-mld_$(mldstr)m","Build.csh")
+
+        open(nrun,"w") do wrun
+            sn = replace(s ,"[datadir]" => datadir())
+            sn = replace(sn,"[expname]" => "IslandRCE")
+            write(wrun,sn)
+        end
+
     end
 
     for imember in 1 : 10
@@ -83,7 +91,7 @@ open(brun,"r") do frun
         mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
         mkpath(datadir("IslandRCE","OUT_STAT",runname))
         mkpath(datadir("IslandRCE","RESTART",runname))
-        mkpath(projectdir("run","IslandRCE","RCE",runname))
+        mkpath(projectdir("run","IslandRCE","control","RCE",runname))
         
         for r in rvec, mld in mldvec
 
@@ -97,7 +105,7 @@ open(brun,"r") do frun
             mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
             mkpath(datadir("IslandRCE","OUT_STAT",runname))
             mkpath(datadir("IslandRCE","RESTART",runname))
-            mkpath(projectdir("run","IslandRCE","RCE",runname))
+            mkpath(projectdir("run","IslandRCE","r_$(rstr)km-mld_$(mldstr)m","RCE",runname))
 
         end
 
