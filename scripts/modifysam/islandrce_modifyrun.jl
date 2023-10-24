@@ -24,7 +24,7 @@ open(mrun,"r") do frun
             sn = replace(sn,"[runname]" => "control")
             sn = replace(sn,"[sndname]" => "islandrce")
             sn = replace(sn,"[lsfname]" => "control")
-            sn = replace(sn,"[prmname]" => "output$mbrstr.prm")
+            sn = replace(sn,"[prmname]" => "output$mbrstr")
             write(wrun,sn)
         end
 
@@ -43,7 +43,7 @@ open(mrun,"r") do frun
                 sn = replace(sn,"[runname]" => runname)
                 sn = replace(sn,"[sndname]" => "islandrce")
                 sn = replace(sn,"[lsfname]" => "control")
-                sn = replace(sn,"[prmname]" => "output$mbrstr.prm")
+                sn = replace(sn,"[prmname]" => "output$mbrstr")
                 write(wrun,sn)
             end
 
@@ -54,7 +54,7 @@ open(mrun,"r") do frun
                 sn = replace(sn,"[runname]" => runname)
                 sn = replace(sn,"[sndname]" => "islandrce")
                 sn = replace(sn,"[lsfname]" => "control")
-                sn = replace(sn,"[prmname]" => "spinup$mbrstr.prm")
+                sn = replace(sn,"[prmname]" => "spinup$mbrstr")
                 write(wrun,sn)
             end
 
@@ -83,6 +83,7 @@ open(brun,"r") do frun
         mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
         mkpath(datadir("IslandRCE","OUT_STAT",runname))
         mkpath(datadir("IslandRCE","RESTART",runname))
+        mkpath(projectdir("run","IslandRCE","RCE",runname))
         
         for r in rvec, mld in mldvec
 
@@ -96,6 +97,7 @@ open(brun,"r") do frun
             mkpath(datadir("IslandRCE","OUT_MOVIES",runname))
             mkpath(datadir("IslandRCE","OUT_STAT",runname))
             mkpath(datadir("IslandRCE","RESTART",runname))
+            mkpath(projectdir("run","IslandRCE","RCE",runname))
 
         end
 

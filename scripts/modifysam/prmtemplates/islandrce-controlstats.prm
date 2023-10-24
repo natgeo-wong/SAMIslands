@@ -1,6 +1,5 @@
 &PARAMETERS
 
-
 caseid = 'TropICS-IslandRCE-member[xx]/StatData',
 
 case_restart = 'RCE',
@@ -33,7 +32,7 @@ doradforcing     = .false.,
 doradhomo        = .false.,
 dosfcforcing     = .false.,
 docoriolis       = .false.,
-donudging_uv     = .true.,
+donudging_uv     = .false.,
 donudging_tq     = .false.,
 
 tauls = 3600.,

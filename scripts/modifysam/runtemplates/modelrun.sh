@@ -23,9 +23,9 @@ module load intel/23.0.0-fasrc01 intelmpi/2021.8.0-fasrc01 netcdf-fortran/4.6.0-
 case=RCE
 expname=[expname]
 runname=[runname]
+prmname=[prmname]
 sndname=[sndname]
 lsfname=[lsfname]
-ensemblemember=member[xx]
 
 exproot=[prjname]/exp
 prmfile=$exproot/prm/$expname/${runname}/${prmname}.prm
