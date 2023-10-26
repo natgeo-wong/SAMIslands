@@ -64,7 +64,7 @@ doisccp = .false.,
 domodis = .false.,
 domisr  = .false.,
 
-nstop    = 864000,
+nstop    = 86400,
 nprint   = 8640,
 nstat    = 360,     ! Calculate statistics every hour!
 nstatfrq = 60,     ! Collect 60 samples per statistical calculation (every 1 minute)
@@ -72,13 +72,13 @@ nstatfrq = 60,     ! Collect 60 samples per statistical calculation (every 1 min
 doSAMconditionals     = .false.,
 dosatupdnconditionals = .false.,
 
-nsave2D      = 8640,
+nsave2D      = 180,
 nsave2Dstart = 0,
 nsave2Dend   = 999999999,
 save2Davg    = .true.,
 
 nsave3D      = 180,
-nsave3Dstart = 9999999,
+nsave3Dstart = 0,
 nsave3Dend   = 999999999,
 rad3Dout     = .true.,
 
