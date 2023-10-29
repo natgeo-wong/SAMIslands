@@ -118,7 +118,7 @@ open(brun,"r") do frun
 
         mbrstr = @sprintf("%02d",imember)
 
-        runname = "RCE_TropICS-IslandRCE-member$mbrstr"
+        runname = "RCE_TropICS-IslandRCE-control-member$mbrstr"
         mkpath(datadir("IslandRCE","OUT_2D",runname))
         mkpath(datadir("IslandRCE","OUT_3D",runname))
         mkpath(datadir("IslandRCE","OUT_MOMENTS",runname))

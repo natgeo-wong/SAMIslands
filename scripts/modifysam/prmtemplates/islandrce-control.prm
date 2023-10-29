@@ -1,6 +1,6 @@
 &PARAMETERS
 
-caseid = 'TropICS-IslandRCE-spinup-member[xx]',
+caseid = 'TropICS-IslandRCE-control-spinup-member[xx]',
 
 case_restart = 'RCE',
 caseid_restart = 'TropICS-IslandRCE-member[xx]',

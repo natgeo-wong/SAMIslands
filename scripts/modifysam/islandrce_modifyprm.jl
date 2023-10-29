@@ -24,6 +24,7 @@ for imember = 1 : nmember
             write(fprm,s)
         end
     end
+    mv(tprm,nprm,force=true)
 
     oprm = projectdir("run","modifysam","prmtemplates","islandrce-controlstats.prm")
     nprm = projectdir("exp","prm","IslandRCE","control","output$mbrstr.prm")
@@ -35,9 +36,8 @@ for imember = 1 : nmember
             write(fprm,s)
         end
     end
-    mkpath(projectdir("exp","prm","IslandRCE","control"))
     mv(tprm,nprm,force=true)
-    @info "Creating new IslandRCE prm file control runs member $mbrstr"
+    @info "Creating new spinup and statistics output IslandRCE prm files for control run member $mbrstr"
     
     for r in rvec, mld in mldvec
 
@@ -47,7 +47,7 @@ for imember = 1 : nmember
         mkpath(projectdir("exp","prm","IslandRCE","$(fID)"))
         @info "Creating new spinup and statistics output IslandRCE prm files for r = $(rstr), MLD = $(mldstr) member $mbrstr"
 
-        oprm = projectdir("run","modifysam","prmtemplates","islandrce-spinup.prm")
+        oprm = projectdir("run","modifysam","prmtemplates","islandrce-island.prm")
         nprm = projectdir("exp","prm","IslandRCE","$(fID)","spinup$mbrstr.prm")
         open(tprm,"w") do fprm
             open(oprm,"r") do rprm
@@ -61,7 +61,7 @@ for imember = 1 : nmember
         end
         mv(tprm,nprm,force=true)
 
-        oprm = projectdir("run","modifysam","prmtemplates","islandrce-stats.prm")
+        oprm = projectdir("run","modifysam","prmtemplates","islandrce-islandstats.prm")
         nprm = projectdir("exp","prm","IslandRCE","$(fID)","output$mbrstr.prm")
         open(tprm,"w") do fprm
             open(oprm,"r") do rprm
