@@ -7,8 +7,9 @@ rvec   = [5,10,15,20,30,50]
 mldvec = [0.01,0.02,0.05,0.1,0.2,0.5,1,2,5,10]
 mkpath(projectdir("exp","prm","IslandRCE"))
 tprm   = projectdir("exp","prm","tmp.prm")
+nmember = 10
 
-for imember = 1 : 10
+for imember = 1 : nmember
 
     mbrstr = @sprintf("%02d",imember)
 
