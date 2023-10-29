@@ -18,6 +18,18 @@ open(mrun,"r") do frun
 
         mbrstr = @sprintf("%02d",imember)
 
+        crun = projectdir("run","IslandRCE","control","spinup$mbrstr.sh")
+        open(crun,"w") do wrun
+            sn = replace(s ,"[email]"   => email)
+            sn = replace(sn,"[prjname]" => projectdir())
+            sn = replace(sn,"[expname]" => "IslandRCE")
+            sn = replace(sn,"[runname]" => "control")
+            sn = replace(sn,"[sndname]" => "islandrce")
+            sn = replace(sn,"[lsfname]" => "control")
+            sn = replace(sn,"[prmname]" => "spinup$mbrstr")
+            write(wrun,sn)
+        end
+
         crun = projectdir("run","IslandRCE","control","output$mbrstr.sh")
         open(crun,"w") do wrun
             sn = replace(s ,"[email]"   => email)

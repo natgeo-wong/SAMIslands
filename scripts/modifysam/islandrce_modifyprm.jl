@@ -12,6 +12,18 @@ nmember = 10
 for imember = 1 : nmember
 
     mbrstr = @sprintf("%02d",imember)
+    mkpath(projectdir("exp","prm","IslandRCE","control"))
+
+    oprm = projectdir("run","modifysam","prmtemplates","islandrce-control.prm")
+    nprm = projectdir("exp","prm","IslandRCE","control","spinup$mbrstr.prm")
+    open(tprm,"w") do fprm
+        open(oprm,"r") do rprm
+            s = read(rprm,String)
+            s = replace(s,"[xx]"  => mbrstr)
+            s = replace(s,"[en]"  => "$(imember)")
+            write(fprm,s)
+        end
+    end
 
     oprm = projectdir("run","modifysam","prmtemplates","islandrce-controlstats.prm")
     nprm = projectdir("exp","prm","IslandRCE","control","output$mbrstr.prm")

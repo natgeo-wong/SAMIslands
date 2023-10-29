@@ -11,7 +11,7 @@
 #SBATCH -t 0-12:00 # time (D-HH:MM)
 
 ##SBATCH --account=linz_lab
-#SBATCH -J "SAM_WTG"
+#SBATCH -J "Island"
 #SBATCH --mail-user=[email]
 #SBATCH --mail-type=ALL
 #SBATCH -o ./LOGS/samrun.%j.out # STDOUT
