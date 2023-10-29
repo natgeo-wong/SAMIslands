@@ -32,7 +32,7 @@ doradforcing     = .false.,
 doradhomo        = .false.,
 dosfcforcing     = .false.,
 docoriolis       = .false.,
-donudging_uv     = .true.,
+donudging_uv     = .false.,
 donudging_tq     = .false.,
 
 tauls = 3600.,
@@ -87,6 +87,8 @@ rad3Dout     = .true.,
 &KUANG_PARAMS
 
 dosstislands      = .true.,
+nrestart_resetsst = .true.,
+
 sstislands_radius = [r].e3,
 sstislands_nrow   = 1.
 sstislands_ncol   = 1.
